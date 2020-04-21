@@ -37,4 +37,18 @@ public class BinarySearch16Test {
         assert 2 == runner.bsearch3(a, a.length, 7);
         assert -1 == runner.bsearch3(a, a.length, 11);
     }
+
+    @Test
+    public void test2() {
+        int[] a = new int[]{2, 3, 8, 8, 9, 10};
+        BinarySearch16 runner = new BinarySearch16();
+        assert 3 == runner.bsearch2(a, a.length, 8);
+    }
+
+    @Test
+    public void test1() {
+        int[] a = new int[]{2, 3, 8, 8, 9, 10};
+        BinarySearch16 runner = new BinarySearch16();
+        assert 2 == runner.bsearch1(a, a.length, 8);
+    }
 }
