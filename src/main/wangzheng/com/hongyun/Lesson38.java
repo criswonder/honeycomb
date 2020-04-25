@@ -1,7 +1,6 @@
 package com.hongyun;
 
 public class Lesson38 {
-
     private int num = 0; // 全局变量或者成员变量
 
     public int count(int[] a, int n) {
