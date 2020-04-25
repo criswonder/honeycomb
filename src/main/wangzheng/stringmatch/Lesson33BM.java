@@ -1,8 +1,6 @@
 package stringmatch;
 
 public class Lesson33BM {
-
-
     private static final int SIZE = 256; // 全局变量或成员变量
 
     public static void main(String[] args) {
@@ -10,7 +8,6 @@ public class Lesson33BM {
         String modelStr = "defa";
         int found = bm(mainStr.toCharArray(), mainStr.length(), modelStr.toCharArray(), modelStr.length());
         System.out.println("found=" + found);
-
     }
 
     private static void generateBC(char[] b, int m, int[] bc) {

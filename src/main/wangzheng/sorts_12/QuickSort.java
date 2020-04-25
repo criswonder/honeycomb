@@ -1,5 +1,6 @@
 package sorts_12;
 
+import org.junit.Assert;
 import utils.PrintUtils;
 
 /**
@@ -9,8 +10,10 @@ public class QuickSort {
     public static void main(String[] args) {
         int[] testArray = new int[]{6, 11, 3, 19, 8, 2, 9, 4, 10, 5, 7};
 //        QuickSort.quickSort(testArray, testArray.length);
-        QuickSort.quickSortAndy(testArray, testArray.length);
+        QuickSort.andyQuickSort(testArray, 0, testArray.length - 1);
         PrintUtils.printArray(testArray);
+        Assert.assertArrayEquals(new int[]{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 19},
+                testArray);
 
 //        System.out.println("kTH=" + findKth(testArray, 1));
 //        System.out.println("kTH=" + findKth(testArray, 2));
@@ -70,36 +73,34 @@ public class QuickSort {
         return i;
     }
 
-
-    //for test purpose
-    public static void quickSortAndy(int[] array, int n) {
-        quickSortInternallyAndy(array, 0, n - 1);
-    }
-
-    private static void quickSortInternallyAndy(int[] a, int p, int r) {
+    public static void andyQuickSort(int[] a, int p, int r) {
         if (p >= r) return;
-        int q = partitionAndy(a, p, r);
-        quickSortInternallyAndy(a, p, q - 1);
-        quickSortInternallyAndy(a, q + 1, r);
+        int pivot = partitionAndy(a, p, r);
+        andyQuickSort(a, p, pivot - 1);
+        andyQuickSort(a, pivot + 1, r);
     }
 
     private static int partitionAndy(int[] a, int p, int r) {
         int i = p;
+        int j = p;
         int pivot = a[r];
-        for (int j = p; j < r; j++) {
+        for (; j < r; j++) {
             if (a[j] < pivot) {
-                if (i != j) {
+                if (i == j) {
+
+                } else {
                     int tmp = a[i];
                     a[i] = a[j];
                     a[j] = tmp;
                 }
+
                 i++;
             }
         }
+        int tmp = a[r];
+        a[r] = a[i];
+        a[i] = tmp;
 
-        int tmp = a[i];
-        a[i] = a[r];
-        a[r] = tmp;
         return i;
     }
 }

@@ -3,7 +3,7 @@ package graph_31;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Search {
+public class GraphSearch {
     public static void main(String[] args) {
         Graph graph = new Graph(8);
         graph.addEdge(0,1);
@@ -17,8 +17,8 @@ public class Search {
         graph.addEdge(5,7);
         graph.addEdge(6,7);
 
-        graph.bfs(0,7);
-//        graph.dfs(0,7);
+//        graph.bfs(0,7);
+        graph.dfs(0,7);
     }
 }
 
@@ -98,6 +98,7 @@ class Graph { // 无向图
     /**
      *
      *prev: -1,0,1,0,1,2,4,5
+     * dfs prev: -1,0,1,4,5,2,4,6
      *       0-1-2
      *       | | |
      *       3-4-5

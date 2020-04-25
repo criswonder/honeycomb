@@ -1,9 +1,9 @@
 package com.hongyun;
 
-public class Lesson24 {
+public class Lesson24TreeTraverse {
     public static void main(String[] args) {
         Node tree = getTree();
-        Lesson24 lesson24 = new Lesson24();
+        Lesson24TreeTraverse lesson24 = new Lesson24TreeTraverse();
         lesson24.tree = tree;
 
 //        //查找节点

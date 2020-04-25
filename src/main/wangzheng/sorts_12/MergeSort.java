@@ -14,17 +14,16 @@ public class MergeSort {
         PrintUtils.printArray(testArray);
 
         int[] testArray2 = {33, 31, 40, 90, 22, 9, 33, 88, 68, 81};
-        mergeSortInternallyAndy(testArray2, 0, testArray2.length - 1);
-
+        mergeSortAndy(testArray2, 0, testArray2.length - 1);
         PrintUtils.printArray(testArray2);
     }
 
 
-    private static void mergeSortInternallyAndy(int[] a, int p, int r) {
+    private static void mergeSortAndy(int[] a, int p, int r) {
         if (p >= r) return;
         int q = p + (r - p) / 2;
-        mergeSortInternallyAndy(a, p, q);
-        mergeSortInternallyAndy(a, q + 1, r);
+        mergeSortAndy(a, p, q);
+        mergeSortAndy(a, q + 1, r);
         mergeAndy(a, p, q, r);
     }
 
@@ -36,7 +35,7 @@ public class MergeSort {
         while (i <= q && j <= r) {
             if (a[i] < a[j]) {
                 tmp[k++] = a[i++];
-            }else{
+            } else {
                 tmp[k++] = a[j++];
             }
         }
@@ -45,7 +44,7 @@ public class MergeSort {
             tmp[k++] = a[i++];
         }
 
-        if(j<=r) tmp[k++] = a[j++];
+        if (j <= r) tmp[k++] = a[j++];
         for (int l = 0; l < r - p + 1; l++) {
             a[p + l] = tmp[l];
         }

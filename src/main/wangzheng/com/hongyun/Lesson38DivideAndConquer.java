@@ -1,6 +1,6 @@
 package com.hongyun;
 
-public class Lesson38 {
+public class Lesson38DivideAndConquer {
     private int num = 0; // 全局变量或者成员变量
 
     public int count(int[] a, int n) {
@@ -40,7 +40,7 @@ public class Lesson38 {
     }
 
     public static void main(String[] args) {
-        Lesson38 lesson38 = new Lesson38();
+        Lesson38DivideAndConquer lesson38 = new Lesson38DivideAndConquer();
         int[] a = {9, 8, 7, 6, 5, 4, 3, 2, 1};
         int count = lesson38.count(a, a.length);
         System.out.println("count=" + count);
