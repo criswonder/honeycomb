@@ -4,6 +4,10 @@ public class Lesson33BM {
     private static final int SIZE = 256; // 全局变量或成员变量
 
     public static void main(String[] args) {
+//        for (int i = 0; i < SIZE; i++) {
+//            System.out.print((char) i);
+//        }
+
         String mainStr = "abcdefabcdefabcdef";
         String modelStr = "defa";
         int found = bm(mainStr.toCharArray(), mainStr.length(), modelStr.toCharArray(), modelStr.length());
@@ -65,14 +69,14 @@ public class Lesson33BM {
         while (i <= n - m) {
             int j;
             for (j = m - 1; j >= 0; --j) { // 模式串从后往前匹配
-                if (a[i+j] != b[j]) break; // 坏字符对应模式串中的下标是j
+                if (a[i + j] != b[j]) break; // 坏字符对应模式串中的下标是j
             }
             if (j < 0) {
                 return i; // 匹配成功，返回主串与模式串第一个匹配的字符的位置
             }
-            int x = j - bc[(int)a[i+j]];
+            int x = j - bc[(int) a[i + j]];
             int y = 0;
-            if (j < m-1) { // 如果有好后缀的话
+            if (j < m - 1) { // 如果有好后缀的话
                 y = moveByGS(j, m, suffix, prefix);
             }
             i = i + Math.max(x, y);
@@ -83,9 +87,9 @@ public class Lesson33BM {
     // j表示坏字符对应的模式串中的字符下标; m表示模式串长度
     private static int moveByGS(int j, int m, int[] suffix, boolean[] prefix) {
         int k = m - 1 - j; // 好后缀长度
-        if (suffix[k] != -1) return j - suffix[k] +1; //这个从手绘图可以看得很清楚，加一是因为坏字符的位置
-        for (int r = j+2; r <= m-1; ++r) {
-            if (prefix[m-r] == true) {
+        if (suffix[k] != -1) return j - suffix[k] + 1; //这个从手绘图可以看得很清楚，加一是因为坏字符的位置
+        for (int r = j + 2; r <= m - 1; ++r) {
+            if (prefix[m - r] == true) {
                 return r;
             }
         }
