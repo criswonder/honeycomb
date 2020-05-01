@@ -43,13 +43,13 @@ public class LinkedList07 {
     public static void main(String args[]) {
 //        reverseList();
 //
-//        testMergeList();
+        testMergeList();
 //
 //        testCircleList();
 
 //        deleteLinkedListKthNode();
 
-        findMiddleNode();
+//        findMiddleNode();
     }
 
     private static void testCircleList() {
@@ -232,13 +232,10 @@ public class LinkedList07 {
     }
 
     public static Node mergeListAndy(Node la, Node lb) {
-        if (la == null) return lb;
-        if (lb == null) return la;
         Node i = la;
         Node j = lb;
         Node k = null;
-        Node result = null;
-
+        Node head = null;
         if (i.data < j.data) {
             k = i;
             i = i.next;
@@ -246,7 +243,7 @@ public class LinkedList07 {
             k = j;
             j = j.next;
         }
-        result = k;
+        head = k;
 
         while (i != null && j != null) {
             if (i.data < j.data) {
@@ -259,9 +256,13 @@ public class LinkedList07 {
             k = k.next;
         }
 
-        if (i == null) k.next = j;
-        if (j == null) k.next = i;
-        return result;
+        if (i != null) {
+            k.next = i;
+        }
+
+        if (j != null) k.next = j;
+
+        return head;
     }
 
     public static Node findMiddleNodeAndy(Node list) {

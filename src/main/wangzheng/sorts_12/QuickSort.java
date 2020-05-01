@@ -1,6 +1,7 @@
 package sorts_12;
 
 import org.junit.Assert;
+import utils.MiscUtils;
 import utils.PrintUtils;
 
 /**
@@ -12,8 +13,8 @@ public class QuickSort {
 //        QuickSort.quickSort(testArray, testArray.length);
         QuickSort.andyQuickSort(testArray, 0, testArray.length - 1);
         PrintUtils.printArray(testArray);
-        Assert.assertArrayEquals(new int[]{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 19},
-                testArray);
+//        Assert.assertArrayEquals(new int[]{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 19},
+//                testArray);
 
 //        System.out.println("kTH=" + findKth(testArray, 1));
 //        System.out.println("kTH=" + findKth(testArray, 2));
@@ -81,26 +82,19 @@ public class QuickSort {
     }
 
     private static int partitionAndy(int[] a, int p, int r) {
-        int i = p;
-        int j = p;
-        int pivot = a[r];
-        for (; j < r; j++) {
-            if (a[j] < pivot) {
-                if (i == j) {
-
-                } else {
-                    int tmp = a[i];
-                    a[i] = a[j];
-                    a[j] = tmp;
+        int i = p, j = p;
+        int value = a[r];
+        while (j < r) {
+            if (a[j] <= value) {
+                if (i != j) {
+                    MiscUtils.swap(a, j, i);
                 }
-
                 i++;
             }
+            j++;
         }
-        int tmp = a[r];
-        a[r] = a[i];
-        a[i] = tmp;
 
+        MiscUtils.swap(a, r, i);
         return i;
     }
 }
