@@ -4,20 +4,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Graph {
-    public int vertex;
-    public List<List<Integer>> edges;
+    public int v;
+    public List<List<Integer>> adj;
 
-    public Graph(int vertex) {
-        this.vertex = vertex;
-        edges = new LinkedList<>();
-        for (int i = 0; i < vertex; i++) {
-            edges.add(i, new LinkedList<>());
+    public Graph(int v) {
+        this.v = v;
+        adj = new LinkedList<>();
+        for (int i = 0; i < v; i++) {
+            adj.add(i, new LinkedList<>());
         }
     }
 
     public void addEdge(int start, int end) {
-        edges.get(start).add(end);
-        edges.get(end).add(start);
+        adj.get(start).add(end);
+        adj.get(end).add(start);
     }
 
     /**
@@ -37,6 +37,28 @@ public class Graph {
         graph.addEdge(5, 6);
         graph.addEdge(1, 5);
         graph.addEdge(3, 6);
+        return graph;
+    }
+
+    /**
+     * 0-1-2
+     * | | |
+     * 3-4-5
+     *   | |
+     *   6-7
+     */
+    public static Graph getTestData2() {
+        Graph graph = new Graph(8);
+        graph.addEdge(0,1);
+        graph.addEdge(0,3);
+        graph.addEdge(3,4);
+        graph.addEdge(1,2);
+        graph.addEdge(1,4);
+        graph.addEdge(4,5);
+        graph.addEdge(4,6);
+        graph.addEdge(2,5);
+        graph.addEdge(5,7);
+        graph.addEdge(6,7);
         return graph;
     }
 }

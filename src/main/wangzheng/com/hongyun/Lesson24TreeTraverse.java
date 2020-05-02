@@ -1,10 +1,15 @@
 package com.hongyun;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class Lesson24TreeTraverse {
     public static void main(String[] args) {
-        Node tree = getTree();
-        Lesson24TreeTraverse lesson24 = new Lesson24TreeTraverse();
-        lesson24.tree = tree;
+//        Node tree = getTree();
+//        Lesson24TreeTraverse lesson24 = new Lesson24TreeTraverse();
+//        lesson24.tree = tree;
 
 //        //查找节点
 //        Node node = lesson24.find(66);
@@ -14,7 +19,47 @@ public class Lesson24TreeTraverse {
 //        lesson24.middleTraverse(tree);
 
         //树的高度
-        System.out.println("height="+lesson24.getTreeHeight(tree));
+//        System.out.println("height="+lesson24.getTreeHeight(tree));
+
+        //下面这种形式将插成一个链表，而不是树，是一种特殊情况
+//        Node node = new Node(10);
+//        insert(node, 9);
+//        insert(node, 8);
+//        insert(node, 7);
+//        insert(node, 6);
+//        insert(node, 5);
+
+        //二叉树的插入和堆是有区别的，感觉节点没有动态的变动
+//        Node node = new Node(7);
+//        insert(node, 9);
+//        insert(node, 8);
+//
+//        insert(node, 6);
+//        insert(node, 5);
+//        insert(node, 10);
+
+        Node node = getTree();
+        System.out.println("前序遍历：");
+        prePrint(node);
+        System.out.println("");
+
+        System.out.println("中序遍历：");
+        middlePrint(node);
+        System.out.println("");
+
+        System.out.println("后序遍历：");
+        postPrint(node);
+        System.out.println("");
+
+        System.out.println("按层遍历：");
+        List<List<Node>> lists = levelPrint(node);
+        for (List<Node> list : lists) {
+            for (Node node1 : list) {
+                System.out.print(node1.data + " ");
+            }
+            System.out.println();
+        }
+
     }
 
     private static Node getTree() {
@@ -46,14 +91,13 @@ public class Lesson24TreeTraverse {
         return node;
     }
 
-    private Node tree;
-
     public int getTreeHeight(Node node) {
         if (node == null) {
             return 0;
         }
         return 1 + Math.max(getTreeHeight(node.right), getTreeHeight(node.left));
     }
+
     public void middleTraverse(Node node) {
         if (node.left != null) {
             middleTraverse(node.left);
@@ -64,7 +108,8 @@ public class Lesson24TreeTraverse {
             middleTraverse(node.right);
         }
     }
-    public Node find(int data) {
+
+    public Node find(Node tree, int data) {
         Node p = tree;
         while (p != null) {
             if (data < p.data) p = p.left;
@@ -84,8 +129,51 @@ public class Lesson24TreeTraverse {
         }
     }
 
+    public static void prePrint(Node tree) {
+        if (tree != null) {
+            System.out.print(tree.data + " ");
+            prePrint(tree.left);
+            prePrint(tree.right);
+        }
+    }
 
-    public void insert(int data) {
+    public static void middlePrint(Node tree) {
+        if (tree != null) {
+            middlePrint(tree.left);
+            System.out.print(tree.data + " ");
+            middlePrint(tree.right);
+        }
+    }
+
+    public static void postPrint(Node tree) {
+        if (tree != null) {
+            postPrint(tree.left);
+            postPrint(tree.right);
+            System.out.print(tree.data + " ");
+        }
+    }
+
+    public static List<List<Node>> levelPrint(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        List<List<Node>> result = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Node> line = new ArrayList<>();
+            while (size > 0) {
+                Node poll = queue.poll();
+                line.add(poll);
+                if (poll.left != null) queue.add(poll.left);
+                if (poll.right != null) queue.add(poll.right);
+                size--;
+            }
+            result.add(line);
+        }
+
+        return result;
+    }
+
+    public static void insert(Node tree, int data) {
         if (tree == null) {
             tree = new Node(data);
             return;
@@ -109,7 +197,7 @@ public class Lesson24TreeTraverse {
         }
     }
 
-    public void delete(int data) {
+    public static void delete(Node tree, int data) {
         Node p = tree; // p指向要删除的节点，初始化指向根节点
         Node pp = null; // pp记录的是p的父节点
         while (p != null && p.data != data) {

@@ -1,5 +1,6 @@
 package sorts_12;
 
+import utils.MiscUtils;
 import utils.PrintUtils;
 
 public class BasicSort {
@@ -9,7 +10,7 @@ public class BasicSort {
 
 
 //        utils.PrintUtils.printArray(testArray);
-        insertSort(testArray, testArray.length);
+        andyInsertSort(testArray, testArray.length);
 //        insertionSort(testArray, testArray.length);
 //        bubbleSort(testArray, testArray.length - 1);
 //        insertSort2(testArray);
@@ -28,37 +29,46 @@ public class BasicSort {
      * @param a
      * @param n
      */
-    public static void insertSort(int[] a, int n) {
+    public static void andyInsertSort(int[] a, int n) {
         for (int i = 1; i < n; i++) {
+            int toInsert = a[i];
             int j = i - 1;
-            int insert = a[i];
             for (; j >= 0; j--) {
-                if (a[j] < insert) {
-                    break;
-                }else{
-                    a[j + 1] = a[j];
-                }
+                if (toInsert > a[j]) break;
+                int tmp = a[j + 1];
+                a[j + 1] = a[j];
+                a[j] = tmp;
             }
-
-            a[j+1] = insert;
+            a[j + 1] = toInsert;
         }
     }
 
     public static void bubbleSort2(int[] a, int n) {
-        for (int i = 0; i < n; i++) {
-            boolean flag = false;
+        for (int i = 0; i < n - 1; i++) {
+            boolean hasChange = false;
             for (int j = 0; j < n - i - 1; j++) {
                 if (a[j] > a[j + 1]) {
-                    int tmp = a[j];
-                    a[j] = a[j + 1];
-                    a[j + 1] = tmp;
-                    flag = true;
+                    MiscUtils.swap(a, j, j + 1);
+                    hasChange = true;
+                }
+            }
+            if (!hasChange) break;
+        }
+    }
+
+    public static void selectionSort(int[] a, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            int destIndex = n - 1 - i;
+            int maxIndex = 0;
+            for (int j = 0; j <= n - 1 - i; j++) {
+                if (a[j] > a[maxIndex]) {
+                    maxIndex = j;
                 }
             }
 
-            if (!flag) {
-                break;
-            }
+            int tmp = a[destIndex];
+            a[destIndex] = a[maxIndex];
+            a[maxIndex] = tmp;
         }
     }
 

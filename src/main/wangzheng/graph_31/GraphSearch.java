@@ -3,22 +3,23 @@ package graph_31;
 import java.util.LinkedList;
 import java.util.Queue;
 
+@Deprecated
 public class GraphSearch {
     public static void main(String[] args) {
         Graph graph = new Graph(8);
-        graph.addEdge(0,1);
-        graph.addEdge(0,3);
-        graph.addEdge(3,4);
-        graph.addEdge(1,2);
-        graph.addEdge(1,4);
-        graph.addEdge(4,5);
-        graph.addEdge(4,6);
-        graph.addEdge(2,5);
-        graph.addEdge(5,7);
-        graph.addEdge(6,7);
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 3);
+        graph.addEdge(3, 4);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 4);
+        graph.addEdge(4, 5);
+        graph.addEdge(4, 6);
+        graph.addEdge(2, 5);
+        graph.addEdge(5, 7);
+        graph.addEdge(6, 7);
 
 //        graph.bfs(0,7);
-        graph.dfs(0,7);
+        graph.dfs(0, 7);
     }
 }
 
@@ -96,14 +97,13 @@ class Graph { // 无向图
     }
 
     /**
-     *
-     *prev: -1,0,1,0,1,2,4,5
+     * prev: -1,0,1,0,1,2,4,5
      * dfs prev: -1,0,1,4,5,2,4,6
-     *       0-1-2
-     *       | | |
-     *       3-4-5
-     *         | |
-     *         6-7
+     * 0-1-2
+     * | | |
+     * 3-4-5
+     * | |
+     * 6-7
      */
     private void print(int[] prev, int s, int t) { // 递归打印 s->t 的路径
         if (prev[t] != -1 && t != s) {

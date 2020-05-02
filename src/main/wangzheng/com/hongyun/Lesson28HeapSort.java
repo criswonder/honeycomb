@@ -1,8 +1,31 @@
 package com.hongyun;
 
 import utils.MiscUtils;
+import utils.PrintUtils;
 
 public class Lesson28HeapSort {
+    public static void main(String[] args) {
+        Heap heap = new Heap(10);
+//
+//        heap.insert(9);
+//        heap.insert(8);
+//        heap.insert(7);
+//        heap.insert(6);
+//        heap.insert(5);
+//        heap.insert(10);
+//        heap.insert(4);
+//        heap.insert(3);
+//        heap.insert(2);
+//        heap.insert(1);
+//
+//        PrintUtils.printArray(heap.a);
+        int[] arr = new int[]{0, 9, 7, 8, 1, 2, 3, 4, 5};
+        heap.sort(arr, arr.length - 1);
+        PrintUtils.printArray(arr);
+
+    }
+
+    //大顶堆
     //todo 堆排序的应用练习
     // 求中位数
     // top k
@@ -29,7 +52,6 @@ public class Lesson28HeapSort {
                 i = i / 2;
             }
         }
-
 
         /**
          * 删除堆顶元素

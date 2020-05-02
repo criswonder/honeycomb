@@ -25,6 +25,14 @@ public class LinkedList07 {
         public int getData() {
             return data;
         }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "data=" + data +
+                    ", next=" + next +
+                    '}';
+        }
     }
 
     public static void printAll(Node list) {
@@ -41,9 +49,13 @@ public class LinkedList07 {
     }
 
     public static void main(String args[]) {
-//        reverseList();
+        Node listA = createListA();
+        printAll(listA);
+        Node reversed = reverseListAndy(listA);
+        System.out.println("reversed:");
+        printAll(reversed);
 //
-        testMergeList();
+//        testMergeList();
 //
 //        testCircleList();
 
@@ -209,25 +221,20 @@ public class LinkedList07 {
     }
 
     public static Node reverseListAndy(Node list) {
-        if (list == null || list.next == null) {
-            return list;
-        }
-
+        if (list == null || list.next == null) return list;
+        Node head = null;
         Node c = list;
-        Node p = null;
-        Node head = null, next;
-
-
+        Node p = null, n;
         while (c != null) {
-            next = c.next;
-            if (next == null) {
+            n = c.next;
+            if (n == null) {
                 head = c;
             }
             c.next = p;
             p = c;
-            c = next;
-
+            c = n;
         }
+
         return head;
     }
 
