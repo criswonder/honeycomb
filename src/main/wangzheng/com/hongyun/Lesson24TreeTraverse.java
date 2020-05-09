@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Queue;
 
 public class Lesson24TreeTraverse {
+    private Node tree;
+
     public static void main(String[] args) {
 //        Node tree = getTree();
 //        Lesson24TreeTraverse lesson24 = new Lesson24TreeTraverse();
@@ -229,5 +231,23 @@ public class Lesson24TreeTraverse {
         if (pp == null) tree = child; // 删除的是根节点
         else if (pp.left == p) pp.left = child;
         else pp.right = child;
+    }
+
+    public Node findMin() {
+        if (tree == null) return null;
+        Node p = tree;
+        while (p.left != null) {
+            p = p.left;
+        }
+        return p;
+    }
+
+    public Node findMax() {
+        if (tree == null) return null;
+        Node p = tree;
+        while (p.right != null) {
+            p = p.right;
+        }
+        return p;
     }
 }

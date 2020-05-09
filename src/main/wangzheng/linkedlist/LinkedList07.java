@@ -49,15 +49,15 @@ public class LinkedList07 {
     }
 
     public static void main(String args[]) {
-        Node listA = createListA();
-        printAll(listA);
-        Node reversed = reverseListAndy(listA);
-        System.out.println("reversed:");
-        printAll(reversed);
+//        Node listA = createListA();
+//        printAll(listA);
+//        Node reversed = reverseListAndy(listA);
+//        System.out.println("reversed:");
+//        printAll(reversed);
 //
 //        testMergeList();
 //
-//        testCircleList();
+        testCircleList();
 
 //        deleteLinkedListKthNode();
 
@@ -71,8 +71,10 @@ public class LinkedList07 {
 //        System.out.println(checkCircle(circleList));
 //        System.out.println(checkCircle(listA));
 //
-//        System.out.println(checkCircleListAndy(circleList));
-//        System.out.println(checkCircleListAndy(listA));
+        System.out.println(checkCircleListAndy(circleList));
+
+        Node listA = createListA();
+        System.out.println(checkCircleListAndy(listA));
     }
 
     private static void testMergeList() {
@@ -188,35 +190,25 @@ public class LinkedList07 {
     }
 
     public static Node deleteLastKthAndy(Node list, int k) {
-        if (list == null) return null;
         Node fast = list;
-        int i = 0;
-        while (fast.next != null && i < k - 1) {
+        int i = 1;
+        while (fast != null && i < k) {
             fast = fast.next;
             i++;
         }
-
-        if (i < k - 2) {
-            System.out.println(String.format("删除的k=%d值，大于链表的长度", k));
-            return list;
-        }
-
-        Node slow = list;
-        Node pre = null;
-        Node head;
+        if (fast == null) return list;
+        Node head, prev = null, slow = list;
         while (fast.next != null) {
             fast = fast.next;
-            pre = slow;
+            prev = slow;
             slow = slow.next;
         }
-
-        if (pre == null) {
+        if (prev == null) {
             head = list.next;
         } else {
             head = list;
-            pre.next = slow.next;
+            prev.next = prev.next.next;
         }
-
         return head;
     }
 
@@ -227,9 +219,7 @@ public class LinkedList07 {
         Node p = null, n;
         while (c != null) {
             n = c.next;
-            if (n == null) {
-                head = c;
-            }
+            if (n == null) head = c;
             c.next = p;
             p = c;
             c = n;
@@ -239,13 +229,13 @@ public class LinkedList07 {
     }
 
     public static Node mergeListAndy(Node la, Node lb) {
-        Node i = la;
-        Node j = lb;
-        Node k = null;
         Node head = null;
-        if (i.data < j.data) {
+        Node i, j, k;
+        i = la;
+        j = lb;
+        if (la.data < lb.data) {
             k = i;
-            i = i.next;
+            i = la.next;
         } else {
             k = j;
             j = j.next;
@@ -263,12 +253,8 @@ public class LinkedList07 {
             k = k.next;
         }
 
-        if (i != null) {
-            k.next = i;
-        }
-
         if (j != null) k.next = j;
-
+        if (i != null) k.next = i;
         return head;
     }
 

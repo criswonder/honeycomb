@@ -1,5 +1,7 @@
 package dynamic_programming;
 
+import java.util.Arrays;
+
 /**
  * 2,9,3,6,5,1,7
  * 输出：2,3,5,7 len=4
@@ -10,9 +12,10 @@ public class Exercise42 {
 
     public static void main(String[] args) {
         Exercise42 exercise = new Exercise42();
-        exercise.find(0, 2, 1);
-        System.out.println("maxAscendSequence=" + exercise.maxAscendSequence);
-        System.out.println("maxAscendSequence=" + exercise.longestIncreaseSubArrayDP(exercise.array1));
+//        exercise.find(0, 2, 1);
+//        System.out.println("maxAscendSequence=" + exercise.maxAscendSequence);
+//        System.out.println("maxAscendSequence=" + exercise.longestIncreaseSubArrayDP(exercise.array1));
+
     }
 
     public void find(int i, int lastElement, int seqLen) {
