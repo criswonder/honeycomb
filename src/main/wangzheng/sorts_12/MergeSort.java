@@ -28,25 +28,26 @@ public class MergeSort {
     }
 
     private static void mergeAndy(int[] a, int p, int q, int r) {
-        int i = p;
-        int j = q + 1;
         int[] tmp = new int[r - p + 1];
-        int k = 0;
+        int i = p, j = q + 1, l = 0;
         while (i <= q && j <= r) {
             if (a[i] < a[j]) {
-                tmp[k++] = a[i++];
+                tmp[l++] = a[i++];
             } else {
-                tmp[k++] = a[j++];
+                tmp[l++] = a[j++];
             }
         }
 
-        if (i <= q) {
-            tmp[k++] = a[i++];
+        while (i <= q) {
+            tmp[l++] = a[i++];
         }
 
-        if (j <= r) tmp[k++] = a[j++];
-        for (int l = 0; l < r - p + 1; l++) {
-            a[p + l] = tmp[l];
+        while (j <= r) {
+            tmp[l++] = a[j++];
+        }
+
+        for (int k = 0; k < tmp.length; k++) {
+            a[p + k] = tmp[k];
         }
     }
 

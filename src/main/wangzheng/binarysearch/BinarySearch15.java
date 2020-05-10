@@ -1,5 +1,6 @@
 package binarysearch;
 
+@Deprecated
 public class BinarySearch15 {
     public static void main(String[] args) {
         int[] arr = new int[]{1, 2, 4, 5, 7, 8, 9, 20, 32};
@@ -14,6 +15,18 @@ public class BinarySearch15 {
     }
 
     public static int binarySearch(int[] a, int len, int value) {
+        int low = 0, high = len - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (a[mid] == value) return mid;
+            if (a[mid] > value) high = mid - 1;
+            if (a[mid] < value) low = mid + 1;
+        }
+
+        return -1;
+    }
+
+    public static int binarySearch3(int[] a, int len, int value) {
         if (len == 1) return value == a[0] ? 0 : -1;
         int start = 0, end = len - 1;
         return binarySearchInternal(a, start, end, value);

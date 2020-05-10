@@ -38,6 +38,7 @@ public class BinarySearch16Test {
         assert -1 == runner.bsearch3(a, a.length, 11);
     }
 
+    //变体二：查找最后一个值等于给定值的元素
     @Test
     public void test2() {
         int[] a = new int[]{2, 3, 8, 8, 9, 10};
@@ -45,10 +46,23 @@ public class BinarySearch16Test {
         assert 3 == runner.bsearch2(a, a.length, 8);
     }
 
+    //变体一：查找第一个值等于给定值的元素
     @Test
     public void test1() {
         int[] a = new int[]{2, 3, 8, 8, 9, 10};
         BinarySearch16 runner = new BinarySearch16();
         assert 2 == runner.bsearch1(a, a.length, 8);
+    }
+
+    //变体一：普通二分查找
+    @Test
+    public void test() {
+        BinarySearch16 binarySearch16 = new BinarySearch16();
+        int[] test1 = {1, 2, 3, 3, 3, 4, 5, 6};
+
+        int index = binarySearch16.bsearch(test1, test1.length, 15);
+        assert index == -1;
+        index = binarySearch16.bsearch(test1, test1.length, 5);
+        assert index == 6;
     }
 }

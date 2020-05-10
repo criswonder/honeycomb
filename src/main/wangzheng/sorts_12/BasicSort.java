@@ -6,13 +6,14 @@ import utils.PrintUtils;
 public class BasicSort {
     public static void main(String[] args) {
 //        int[] testArray = {33, 31, 40, 90, 22, 9, 33, 88, 68, 81};
-        int[] testArray = {90, 88, 81, 68, 40, 33, 33, 31, 22, 9, 22};
+//        int[] testArray = {90, 88, 81, 68, 40, 33, 33, 31, 22, 9, 22};
+        int[] testArray = {1, 2, 4, 5, 8, 3};
 
 
 //        utils.PrintUtils.printArray(testArray);
-        andyInsertSort(testArray, testArray.length);
+//        andyInsertSort(testArray, testArray.length);
 //        insertionSort(testArray, testArray.length);
-//        bubbleSort(testArray, testArray.length - 1);
+        bubbleSort2(testArray, testArray.length);
 //        insertSort2(testArray);
 //        insertSort3(testArray);
 //        bubbleSort2(testArray, testArray.length);
@@ -30,29 +31,33 @@ public class BasicSort {
      * @param n
      */
     public static void andyInsertSort(int[] a, int n) {
-        for (int i = 1; i < n; i++) {
-            int toInsert = a[i];
-            int j = i - 1;
-            for (; j >= 0; j--) {
-                if (toInsert > a[j]) break;
-                int tmp = a[j + 1];
-                a[j + 1] = a[j];
-                a[j] = tmp;
+        for (int i = 0; i < n - 1; i++) {
+            int toInsert = a[i + 1];
+            int j = i;
+            while (j >= 0) {
+                if (a[j] > toInsert) {
+                    MiscUtils.swap(a, j, j + 1);
+                    j--;
+                } else {
+                    break;
+                }
             }
             a[j + 1] = toInsert;
         }
     }
 
     public static void bubbleSort2(int[] a, int n) {
-        for (int i = 0; i < n - 1; i++) {
-            boolean hasChange = false;
+        for (int i = 0; i < n; i++) {
+            boolean hasSwitch = false;
             for (int j = 0; j < n - i - 1; j++) {
                 if (a[j] > a[j + 1]) {
                     MiscUtils.swap(a, j, j + 1);
-                    hasChange = true;
+                    hasSwitch = true;
                 }
             }
-            if (!hasChange) break;
+            if (!hasSwitch) {
+                break;
+            }
         }
     }
 

@@ -30,7 +30,7 @@ public class LinkedList07 {
         public String toString() {
             return "Node{" +
                     "data=" + data +
-                    ", next=" + next +
+                    ", next=" + next.data +
                     '}';
         }
     }
@@ -55,9 +55,9 @@ public class LinkedList07 {
 //        System.out.println("reversed:");
 //        printAll(reversed);
 //
-//        testMergeList();
+        testMergeList();
 //
-        testCircleList();
+//        testCircleList();
 
 //        deleteLinkedListKthNode();
 
@@ -181,7 +181,7 @@ public class LinkedList07 {
 //        System.out.println(String.format("删除后："));
 //        printAll(list);
 
-        k = 7;
+        k = 3;
         System.out.println(String.format("删除倒数第%d个节点：", k));
         printAll(list);
         Node node = deleteLastKthAndy(list, k);
@@ -192,55 +192,58 @@ public class LinkedList07 {
     public static Node deleteLastKthAndy(Node list, int k) {
         Node fast = list;
         int i = 1;
-        while (fast != null && i < k) {
+        while (fast.next != null && i < k) {
             fast = fast.next;
             i++;
         }
-        if (fast == null) return list;
-        Node head, prev = null, slow = list;
+
+        if (i < k) return list;
+
+        Node prev = null;
+        Node slow = list;
         while (fast.next != null) {
             fast = fast.next;
             prev = slow;
             slow = slow.next;
         }
+
         if (prev == null) {
-            head = list.next;
+            return slow.next;
         } else {
-            head = list;
             prev.next = prev.next.next;
+            return list;
         }
-        return head;
     }
 
     public static Node reverseListAndy(Node list) {
-        if (list == null || list.next == null) return list;
         Node head = null;
-        Node c = list;
-        Node p = null, n;
-        while (c != null) {
-            n = c.next;
-            if (n == null) head = c;
-            c.next = p;
-            p = c;
-            c = n;
+        if (list == null || list.next == null) return list;
+        Node prev = null, cur = list, next = null;
+        while (cur != null) {
+            next = cur.next;
+            if (next == null) {
+                head = cur;
+            }
+            cur.next = prev;
+            prev = cur;
+            cur = next;
         }
-
         return head;
     }
 
     public static Node mergeListAndy(Node la, Node lb) {
-        Node head = null;
-        Node i, j, k;
-        i = la;
-        j = lb;
+        if (la == null) return lb;
+        if (lb == null) return la;
+        Node head;
+        Node i = la, j = lb, k;
         if (la.data < lb.data) {
-            k = i;
+            head = la;
             i = la.next;
         } else {
-            k = j;
-            j = j.next;
+            head = lb;
+            j = lb.next;
         }
-        head = k;
+        k = head;
 
         while (i != null && j != null) {
             if (i.data < j.data) {
@@ -253,8 +256,9 @@ public class LinkedList07 {
             k = k.next;
         }
 
-        if (j != null) k.next = j;
-        if (i != null) k.next = i;
+        if (i == null) k.next = j;
+        if (j == null) k.next = i;
+
         return head;
     }
 
@@ -274,23 +278,19 @@ public class LinkedList07 {
     }
 
     public static boolean checkCircleListAndy(Node list) {
-        if (list == null) {
-            return false;
-        }
-
-        Node slow = list;
-        Node fast = list;
-
-        while (fast != null && fast.next != null) {
-            fast = fast.next.next;
-            slow = slow.next;
-
-            if (fast == slow) {
-                return true;
+        if (list == null || list.next == null) return false;
+        Node fast = list, slow = list;
+        while (true) {
+            if (fast.next != null && fast.next.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+                if (fast.equals(slow)) {
+                    return true;
+                }
+            } else {
+                return false;
             }
         }
-
-        return false;
     }
 
 

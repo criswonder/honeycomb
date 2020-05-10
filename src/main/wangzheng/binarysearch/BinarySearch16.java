@@ -2,28 +2,10 @@ package binarysearch;
 
 public class BinarySearch16 {
     public static void main(String[] args) {
-//        test0();
 
-//        int[] test1 = {1, 2, 3, 3, 3, 4, 5, 6};
-//        int index = binarySearch16.bsearch1(test1, test1.length, 3);
-//        System.out.println(String.format("第一个等于给定值得数的index=%d", index));
-//
-//        index = binarySearch16.bsearch2(test1, test1.length, 3);
-//        System.out.println(String.format("最后一个值等于给定值的元素的index=%d", index));
-
-//        test4();
     }
 
-    private static void test0() {
-        BinarySearch16 binarySearch16 = new BinarySearch16();
-        int[] test1 = {1, 2, 3, 3, 3, 4, 5, 6};
-
-        int index = binarySearch16.bsearch(test1, test1.length, 15);
-        assert index == -1;
-        index = binarySearch16.bsearch(test1, test1.length, 5);
-        assert index == 6;
-    }
-
+    //普通二分查找
     public int bsearch(int[] a, int n, int value) {
         int low = 0;
         int high = n - 1;

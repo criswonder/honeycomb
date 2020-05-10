@@ -82,19 +82,21 @@ public class QuickSort {
     }
 
     private static int partitionAndy(int[] a, int p, int r) {
+        int pivot = a[r];
         int i = p, j = p;
-        int value = a[r];
         while (j < r) {
-            if (a[j] <= value) {
-                if (i != j) {
-                    MiscUtils.swap(a, j, i);
+            if (a[j] < a[r]) {
+                if (i == j) {
+                    i++;
+                } else {
+                    MiscUtils.swap(a, i, j);
+                    i++;
                 }
-                i++;
             }
             j++;
         }
 
-        MiscUtils.swap(a, r, i);
+        MiscUtils.swap(a, i, r);
         return i;
     }
 }
