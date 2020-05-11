@@ -43,7 +43,8 @@ public class BinarySearch16Test {
     public void test2() {
         int[] a = new int[]{2, 3, 8, 8, 9, 10};
         BinarySearch16 runner = new BinarySearch16();
-        assert 3 == runner.bsearch2(a, a.length, 8);
+        int i = runner.bsearch2(a, a.length, 8);
+        assert 3 == i;
     }
 
     //变体一：查找第一个值等于给定值的元素

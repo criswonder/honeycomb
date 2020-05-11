@@ -35,7 +35,8 @@ public class BinarySearch16 {
                 low = mid + 1;
             } else {
                 if (mid == 0 || a[mid - 1] < value) return mid;
-                else high = mid - 1;
+                else
+                    high = mid - 1;
             }
         }
         return -1;
@@ -64,13 +65,13 @@ public class BinarySearch16 {
         int high = n - 1;
         while (low <= high) {
             int mid = low + ((high - low) >> 1);
-            if (a[mid] > value) {
-                high = mid - 1;
-            } else if (a[mid] < value) {
-                low = mid + 1;
-            } else {
+            if (a[mid] == value) {
                 if (mid == n - 1 || a[mid + 1] > value) return mid;
                 else low = mid + 1;
+            } else if (a[mid] > value) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
             }
         }
         return -1;
@@ -98,9 +99,9 @@ public class BinarySearch16 {
         int low = 0;
         int high = n - 1;
         while (low <= high) {
-            int mid = low + ((high - low) >> 1);
+            int mid = (low + high) / 2;
             if (a[mid] >= value) {
-                if ((mid == 0) || (a[mid - 1] < value)) return mid;
+                if (mid == 0 || a[mid - 1] < value) return mid;
                 else high = mid - 1;
             } else {
                 low = mid + 1;
@@ -114,19 +115,16 @@ public class BinarySearch16 {
     // eg:2,3,4,7中最后一个小于等于8的应该是7
     // eg:2,3,4,4,7中最后一个小于等于4的应该是第二个4
     public int bsearch4(int[] a, int n, int value) {
-        int low = 0;
-        int high = n - 1;
+        int low = 0, high = n - 1;
         while (low <= high) {
-            int mid = low + ((high - low) >> 1);
-            if (a[mid] > value) {
-                high = mid - 1;
-            } else {
+            int mid = (low + high) >> 1;
+            if (a[mid] <= value) {
                 if (mid == n - 1 || a[mid + 1] > value) return mid;
-                else
-                    low = mid + 1;
+                else low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
-
         return -1;
     }
 

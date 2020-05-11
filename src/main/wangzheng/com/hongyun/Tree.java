@@ -5,41 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class Lesson24TreeTraverse {
-    private Node tree;
-
+public class Tree {
     public static void main(String[] args) {
-//        Node tree = getTree();
-//        Lesson24TreeTraverse lesson24 = new Lesson24TreeTraverse();
-//        lesson24.tree = tree;
-
-//        //查找节点
-//        Node node = lesson24.find(66);
-//        System.out.println(node.data);
-//
-//        //中序遍历
-//        lesson24.middleTraverse(tree);
-
-        //树的高度
-//        System.out.println("height="+lesson24.getTreeHeight(tree));
-
-        //下面这种形式将插成一个链表，而不是树，是一种特殊情况
-//        Node node = new Node(10);
-//        insert(node, 9);
-//        insert(node, 8);
-//        insert(node, 7);
-//        insert(node, 6);
-//        insert(node, 5);
-
-        //二叉树的插入和堆是有区别的，感觉节点没有动态的变动
-//        Node node = new Node(7);
-//        insert(node, 9);
-//        insert(node, 8);
-//
-//        insert(node, 6);
-//        insert(node, 5);
-//        insert(node, 10);
-
         Node node = getTree();
         System.out.println("前序遍历：");
         prePrint(node);
@@ -64,7 +31,7 @@ public class Lesson24TreeTraverse {
 
     }
 
-    private static Node getTree() {
+    public static Node getTree() {
         Node node = new Node(33);
         Node node1 = new Node(16);
         Node node12 = new Node(50);
@@ -93,11 +60,17 @@ public class Lesson24TreeTraverse {
         return node;
     }
 
-    public int getTreeHeight(Node node) {
+    public static int getTreeHeight(Node node) {
         if (node == null) {
             return 0;
         }
         return 1 + Math.max(getTreeHeight(node.right), getTreeHeight(node.left));
+    }
+
+    public static int getTreeH(Node node) {
+        if (node == null) return 0;
+        if (node.right == null && node.left == null) return 1;
+        return Math.max(getTreeH(node.left), getTreeH(node.right)) + 1;
     }
 
     public void middleTraverse(Node node) {
@@ -122,9 +95,9 @@ public class Lesson24TreeTraverse {
     }
 
     public static class Node {
-        private int data;
-        private Node left;
-        private Node right;
+        public int data;
+        public Node left;
+        public Node right;
 
         public Node(int data) {
             this.data = data;
@@ -156,17 +129,18 @@ public class Lesson24TreeTraverse {
     }
 
     public static List<List<Node>> levelPrint(Node root) {
+        if (root == null) return null;
+        List<List<Node>> result = new ArrayList<>();
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
-        List<List<Node>> result = new ArrayList<>();
         while (!queue.isEmpty()) {
             int size = queue.size();
-            List<Node> line = new ArrayList<>();
+            List<Node> line = new ArrayList<>(size);
             while (size > 0) {
-                Node poll = queue.poll();
-                line.add(poll);
-                if (poll.left != null) queue.add(poll.left);
-                if (poll.right != null) queue.add(poll.right);
+                Node n = queue.poll();
+                line.add(n);
+                if (n.left != null) queue.add(n.left);
+                if (n.right != null) queue.add(n.right);
                 size--;
             }
             result.add(line);
@@ -175,13 +149,13 @@ public class Lesson24TreeTraverse {
         return result;
     }
 
-    public static void insert(Node tree, int data) {
-        if (tree == null) {
-            tree = new Node(data);
+    public static void insert(Node root, int data) {
+        if (root == null) {
+            root = new Node(data);
             return;
         }
 
-        Node p = tree;
+        Node p = root;
         while (p != null) {
             if (data > p.data) {
                 if (p.right == null) {
@@ -233,7 +207,7 @@ public class Lesson24TreeTraverse {
         else pp.right = child;
     }
 
-    public Node findMin() {
+    public Node findMin(Node tree) {
         if (tree == null) return null;
         Node p = tree;
         while (p.left != null) {
@@ -242,7 +216,7 @@ public class Lesson24TreeTraverse {
         return p;
     }
 
-    public Node findMax() {
+    public Node findMax(Node tree) {
         if (tree == null) return null;
         Node p = tree;
         while (p.right != null) {
