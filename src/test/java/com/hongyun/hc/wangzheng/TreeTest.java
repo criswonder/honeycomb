@@ -90,4 +90,19 @@ public class TreeTest {
         Tree.delete(node3,7);
         levelPrint(node3);
     }
+
+    @Test
+    public void testRevertTree(){
+//        Tree.Node node3 = new Tree.Node(7);
+//        Tree.insert(node3,5);
+//        Tree.insert(node3,10);
+//        levelPrint(node3);
+//        Tree.invertNode(node3);
+//        levelPrint(node3);
+
+        Tree.Node node = Tree.getTree();
+        levelPrint(node);
+        Tree.invertNode(node);
+        levelPrint(node);
+    }
 }

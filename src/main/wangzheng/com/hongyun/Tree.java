@@ -224,4 +224,15 @@ public class Tree {
         }
         return p;
     }
+
+    public static Node invertNode(Node tree) {
+        if (tree == null) {
+            return null;
+        }
+        Node right = invertNode(tree.right);
+        Node left = invertNode(tree.left);
+        tree.right = left;
+        tree.left = right;
+        return tree;
+    }
 }

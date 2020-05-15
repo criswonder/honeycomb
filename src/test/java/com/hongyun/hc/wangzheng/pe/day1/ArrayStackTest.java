@@ -100,10 +100,12 @@ public class ArrayStackTest {
 
     @Test
     public void testFirstMissingPositive() {
-        assert 1 == firstMissingPositive(new int[]{7, 8, 9, 11, 12});
-        assert 4 == firstMissingPositive(new int[]{1, 2, 3});
-        assert 4 == firstMissingPositive(new int[]{1, 2, 3, 9, 11});
-        int i = firstMissingPositive(new int[]{1, 2, 0});
-        assert 3 == i;
+//        assert 1 == firstMissingPositive(new int[]{7, 8, 9, 11, 12});
+//        assert 4 == firstMissingPositive(new int[]{1, 2, 3});
+//        assert 4 == firstMissingPositive(new int[]{1, 2, 3, 9, 11});
+//        int i = firstMissingPositive(new int[]{1, 2, 0});
+//        assert 3 == i;
+
+        assert 3 == firstMissingPositive(new int[]{1, 2, 2});
     }
 }
