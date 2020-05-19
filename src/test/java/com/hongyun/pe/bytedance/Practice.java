@@ -1,4 +1,4 @@
-package com.hongyun.hc.wangzheng;
+package com.hongyun.pe.bytedance;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,12 +47,6 @@ public class Practice {
     private int[] expectsInOrder = new int[]{9, 10, 15, 20, 25, 30, 35};
 
     @Test
-    public void postOrder() {
-        TreeNode root = getTestData();
-        postOrder(root);
-    }
-
-    @Test
     public void testNonRecursivePostOrder() {
         TreeNode root = getTestData();
         List<Integer> integers = postOrderTraversal(root);
@@ -86,17 +80,6 @@ public class Practice {
             results[i] = integers.get(i);
         }
         Assert.assertArrayEquals(expectsPreOrder, results);
-    }
-
-    public void postOrder(TreeNode node) {
-        if (node == null) return;
-        if (node.left != null) {
-            postOrder(node.left);
-        }
-        if (node.right != null) {
-            postOrder(node.right);
-        }
-        System.out.println(node.val);
     }
 
     // 非递归前序遍历
