@@ -1,5 +1,6 @@
 package com.hongyun.pe.bytedance;
 
+import com.hongyun.Tree;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -82,41 +83,44 @@ public class Practice {
         Assert.assertArrayEquals(expectsPreOrder, results);
     }
 
+    @Test
+    public void testLevelTraversal() {
+        List<List<Integer>> lists = levelTraversal(getTestData());
+        for (List<Integer> list : lists) {
+            for (Integer integer : list) {
+                System.out.print(integer+" ");
+            }
+            System.out.println();
+        }
+    }
+
     // 非递归前序遍历
     public List<Integer> preOrderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-
+        if (root == null) return null;
+        List<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
-
         while (!stack.isEmpty()) {
-            TreeNode current = stack.pop();
-            res.add(current.val);
+            TreeNode pop = stack.pop();
+            result.add(pop.val);
 
-            if (current.right != null) {
-                stack.push(current.right);
+            if (pop.right != null) {
+                stack.push(pop.right);
             }
 
-            if (current.left != null) {
-                stack.push(current.left);
+            if (pop.left != null) {
+                stack.push(pop.left);
             }
         }
 
-        return res;
+        return result;
     }
 
     // 非递归中序遍历
     public List<Integer> inOrderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
         Stack<TreeNode> stack = new Stack<>();
-
         TreeNode p = root;
         while (p != null || !stack.isEmpty()) {
             if (p != null) {
@@ -124,39 +128,28 @@ public class Practice {
                 p = p.left;
             } else {
                 p = stack.pop();
-                res.add(p.val);
+                result.add(p.val);
                 p = p.right;
             }
         }
 
-        return res;
+        return result;
     }
 
     // 非递归后序遍历
     public List<Integer> postOrderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+        TreeNode p = root, pre = null;
         Stack<TreeNode> stack = new Stack<>();
-
-        TreeNode p = root;
-
-        // 标记最近出栈的节点，用于判断是否是p节点的右孩子，如果是的话，就可以访问p节点
-        TreeNode pre = p;
-
         while (p != null || !stack.isEmpty()) {
             if (p != null) {
-
                 stack.push(p);
                 p = p.left;
-
             } else {
                 p = stack.pop();
-
                 if (p.right == null || p.right == pre) {
-                    res.add(p.val);
+                    result.add(p.val);
                     pre = p;
                     p = null;
                 } else {
@@ -167,33 +160,28 @@ public class Practice {
                 }
             }
         }
-
-        return res;
+        return result;
     }
 
     // 非递归层次遍历
-    public List<Integer> levelTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
+    public List<List<Integer>> levelTraversal(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
             return res;
         }
 
         Queue<TreeNode> queue = new LinkedList<>();
-
         queue.add(root);
-
         while (!queue.isEmpty()) {
-            // current node
-            TreeNode current = queue.remove();
-            res.add(current.val);
-
-            if (current.left != null) {
-                queue.add(current.left);
+            int size = queue.size();
+            List<Integer> line = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                line.add(node.val);
+                if(node.left!=null) queue.add(node.left);
+                if(node.right!=null) queue.add(node.right);
             }
-
-            if (current.right != null) {
-                queue.add(current.right);
-            }
+            res.add(line);
         }
 
         return res;
