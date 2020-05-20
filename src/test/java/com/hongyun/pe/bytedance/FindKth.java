@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-public class Practice3 {
+public class FindKth {
 
     @Test
     public void tc1() {
@@ -60,9 +60,7 @@ public class Practice3 {
 
         for (; j < q; j++) {
             if (a[j] < pivot) {
-                if (i == j) {
-
-                } else {
+                if (i != j) {
                     int tmp = a[i];
                     a[i] = a[j];
                     a[j] = tmp;

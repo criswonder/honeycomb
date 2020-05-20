@@ -3,7 +3,7 @@ package com.hongyun.pe.bytedance;
 import org.junit.Test;
 
 //https://leetcode-cn.com/problems/maximum-subarray/
-public class Practice1 {
+public class MaxSubArraySum {
 
     @Test
     public void tc1() {

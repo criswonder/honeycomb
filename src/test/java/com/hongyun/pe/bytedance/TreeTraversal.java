@@ -1,12 +1,11 @@
 package com.hongyun.pe.bytedance;
 
-import com.hongyun.Tree;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.*;
 
-public class Practice {
+public class TreeTraversal {
     class TreeNode {
         int val;
         TreeNode left, right;
