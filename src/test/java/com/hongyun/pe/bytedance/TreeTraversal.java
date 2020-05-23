@@ -117,8 +117,8 @@ public class TreeTraversal {
 
     // 非递归中序遍历
     public List<Integer> inOrderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        if (root == null) return result;
+        List<Integer> res = new ArrayList<>();
+        if (root == null) return res;
         Stack<TreeNode> stack = new Stack<>();
         TreeNode p = root;
         while (p != null || !stack.isEmpty()) {
@@ -127,12 +127,11 @@ public class TreeTraversal {
                 p = p.left;
             } else {
                 p = stack.pop();
-                result.add(p.val);
+                res.add(p.val);
                 p = p.right;
             }
         }
-
-        return result;
+        return res;
     }
 
     // 非递归后序遍历
@@ -141,18 +140,17 @@ public class TreeTraversal {
         if (root == null) {
             return res;
         }
-
-        TreeNode p = root, pre = null;
         Stack<TreeNode> stack = new Stack<>();
+        TreeNode p = root, prev = null;
         while (p != null || !stack.isEmpty()) {
             if (p != null) {
                 stack.push(p);
                 p = p.left;
             } else {
                 p = stack.pop();
-                if (p.right == null || p.right == pre) {
+                if (p.right == null || p.right == prev) {
                     res.add(p.val);
-                    pre = p;
+                    prev = p;
                     p = null;
                 } else {
                     stack.push(p);
@@ -162,6 +160,7 @@ public class TreeTraversal {
                 }
             }
         }
+
         return res;
     }
 

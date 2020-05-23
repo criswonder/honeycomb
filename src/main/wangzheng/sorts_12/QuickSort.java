@@ -1,7 +1,5 @@
 package sorts_12;
 
-import org.junit.Assert;
-import utils.MiscUtils;
 import utils.PrintUtils;
 
 /**
@@ -82,21 +80,25 @@ public class QuickSort {
     }
 
     private static int partitionAndy(int[] a, int p, int r) {
-        int pivot = a[r];
+        int val = a[r];
         int i = p, j = p;
         while (j < r) {
-            if (a[j] < a[r]) {
-                if (i == j) {
-                    i++;
-                } else {
-                    MiscUtils.swap(a, i, j);
-                    i++;
+            if (a[j] < val) {
+                if (i != j) {
+                    int tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
                 }
+                i++;
             }
             j++;
+
         }
 
-        MiscUtils.swap(a, i, r);
+        int tmp = a[i];
+        a[i] = a[r];
+        a[r] = tmp;
+
         return i;
     }
 }
