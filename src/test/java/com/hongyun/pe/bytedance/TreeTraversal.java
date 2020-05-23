@@ -87,7 +87,7 @@ public class TreeTraversal {
         List<List<Integer>> lists = levelTraversal(getTestData());
         for (List<Integer> list : lists) {
             for (Integer integer : list) {
-                System.out.print(integer+" ");
+                System.out.print(integer + " ");
             }
             System.out.println();
         }
@@ -137,8 +137,11 @@ public class TreeTraversal {
 
     // 非递归后序遍历
     public List<Integer> postOrderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
-        if (root == null) return result;
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+
         TreeNode p = root, pre = null;
         Stack<TreeNode> stack = new Stack<>();
         while (p != null || !stack.isEmpty()) {
@@ -148,7 +151,7 @@ public class TreeTraversal {
             } else {
                 p = stack.pop();
                 if (p.right == null || p.right == pre) {
-                    result.add(p.val);
+                    res.add(p.val);
                     pre = p;
                     p = null;
                 } else {
@@ -159,7 +162,7 @@ public class TreeTraversal {
                 }
             }
         }
-        return result;
+        return res;
     }
 
     // 非递归层次遍历
@@ -177,8 +180,8 @@ public class TreeTraversal {
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
                 line.add(node.val);
-                if(node.left!=null) queue.add(node.left);
-                if(node.right!=null) queue.add(node.right);
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
             }
             res.add(line);
         }
