@@ -1,8 +1,7 @@
 package dynamic_programming;
 
-import utils.PrintUtils;
-
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class DynamicProgramming40 {
 
@@ -59,7 +58,11 @@ public class DynamicProgramming40 {
                 for (int j = 0; j <= w; ++j) {// 不把第 i 个物品放入背包
                     if (states[i - 1][j] == true) states[i][j] = states[i - 1][j];
                 }
-                for (int j = 0; j <= w - weight[i]/*第i个物品还没有放入,背包里的重量最多是w-weight[i]种情况,考察j>w-weight[i]的情况没有意义,背包会装满*/; ++j) {// 把第 i 个物品放入背包
+                for (int j = 0;
+                     /*第i个物品还没有放入,背包里的重量最多是w-weight[i]种情况,
+                     考察j>w-weight[i]的情况没有意义,背包会装满*/
+                     j <= w - weight[i];
+                     ++j) {// 把第 i 个物品放入背包
                     if (states[i - 1][j] == true) states[i][j + weight[i]] = true;
                 }
             }
@@ -77,7 +80,9 @@ public class DynamicProgramming40 {
             states[items[0]] = true;
 
             for (int i = 1; i < n; ++i) { // 动态规划
-                for (int j = w - items[i]; j >= 0; --j) {// 把第 i 个物品放入背包 //为什么这里要从大到小循环：第i轮循环中新设置的值会干扰到后面的设值。
+                for (int j = w - items[i]; j >= 0; --j) {
+                    // 把第 i 个物品放入背包
+                    // 为什么这里要从大到小循环：第i轮循环中新设置的值会干扰到后面的设值。
                     if (states[j] == true) states[j + items[i]] = true;
                 }
             }

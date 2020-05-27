@@ -7,9 +7,11 @@ public class RecursiveCall {
 //        int[] test = {1, 2, 3};
 //
 //        int[] array = {1, 2, 3, 4, 5, 6, 7};
-//        int[] array = {1, 2, 3};
-//        allSort(array, 0, array.length - 1);
+        int[] array = {1, 2};
+        allSort(array, 0, array.length - 1);
+
 //        PrintUtils.printArray(array);
+
 //
 ////        printShabang(9);
 //        System.out.println("\n" + calculateShabang(5));
@@ -33,7 +35,7 @@ public class RecursiveCall {
     }
 
     private static void swap(int[] array, int a, int b) {
-        System.out.println(String.format("arr[%d]=%d,arr[%d]=%d", a, array[a], b, array[b]));
+//        System.out.println(String.format("arr[%d]=%d,arr[%d]=%d", a, array[a], b, array[b]));
         int tem = array[a];
         array[a] = array[b];
         array[b] = tem;
@@ -63,19 +65,24 @@ public class RecursiveCall {
         return fibonacci(n - 1) + fibonacci(n - 2);
     }
 
+    /**
+     * @param s 要开方的数
+     * @return
+     */
     public static int sqrt2(int s) {
-        int x = s/9;
+        int x = s / 9;
         if (x == 0) return 0;
         return (int) sqrts(x, s);
     }
 
     private static double sqrts(double x, int s) {
-        //假设res这一步将等于x。下列的等式就是：x = (x+s/x)/2 ==> 2x = x+ s/x ==>x^2 = s;
-        double res = (x + s / x) / 2;
-        if (res == x) {
+        //假设res这一步将等于x。
+        //下列的等式就是：x = (x+s/x)/2 ==> 2x = x+ s/x ==>x^2 = s;
+        double tmpX = (x + s / x) / 2;
+        if (tmpX == x) {
             return x;
         } else {
-            return sqrts(res, s);
+            return sqrts(tmpX, s);
         }
     }
 

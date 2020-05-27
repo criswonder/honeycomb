@@ -15,25 +15,28 @@ public class Coins {
 
         int num = amount;
 //        boolean a[][] = new boolean[num][amount + 1];
-        boolean b[] = new boolean[amount + 1];
+        //eg: {true,true,false,false} 表示金额是0、1
+        boolean state[] = new boolean[amount + 1];
 
-        //放置第一个硬币
+
+        //放置第一个硬币，所有金额的硬币都可以放
         for (int j = 0; j < coins.length; j++) {
-//            if (coins[j] <= amount) a[0][coins[j]] = true;
-            if (coins[j] <= amount) b[coins[j]] = true;
-            if (coins[j] == amount) return 1;
+            if (coins[j] <= amount) state[coins[j]] = true;
         }
 
-        //开始放置硬币
+        //检测是否放了一个硬币就ok了
+        if (state[amount]) return 1;
+
+        //开始放置硬币,最坏情况可能会放置amount个
         for (int l = 1; l < amount; l++) {
-            boolean c[] = new boolean[amount + 1];
-            System.arraycopy(b, 0, c, 0, amount + 1);
+            boolean[] lastState = new boolean[amount + 1];
+            System.arraycopy(state, 0, lastState, 0, amount + 1);
 
             for (int j = 0; j < coins.length; j++) {
-                for (int k = b.length - 1 - coins[j]; k >= 0; k--) {
-                    if (c[k]) {
+                for (int k = state.length - 1 - coins[j]; k >= 0; k--) {
+                    if (lastState[k]) {
                         int curAmount = k + coins[j];
-                        b[curAmount] = true;
+                        state[curAmount] = true;
                         if (curAmount == amount) return l + 1;
                     }
                 }
@@ -49,6 +52,26 @@ public class Coins {
         if (sum == 4) return 2;
         if (sum == 5) return 1;
         return Math.min(coins(sum - 1), Math.min(coins(sum - 3), coins(sum - 5))) + 1;
+    }
+
+
+    public int coinChange3(int[] coins, int amount) {
+        if (amount < 1) return 0;
+        return coinChange(coins, amount, new int[amount]);
+    }
+
+    private int coinChange(int[] coins, int rem, int[] count) {
+        if (rem < 0) return -1;
+        if (rem == 0) return 0;
+        if (count[rem - 1] != 0) return count[rem - 1];
+        int min = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            int res = coinChange(coins, rem - coin, count);
+            if (res >= 0 && res < min)
+                min = 1 + res;
+        }
+        count[rem - 1] = (min == Integer.MAX_VALUE) ? -1 : min;
+        return count[rem - 1];
     }
 
     public int coinsGreedy(int sum) {

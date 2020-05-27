@@ -197,7 +197,7 @@ public class LinkedList07 {
             i++;
         }
 
-        if (i < k) return list;
+        if (i < k - 1) return list;
 
         Node prev = null;
         Node slow = list;
