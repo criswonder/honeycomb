@@ -5,6 +5,7 @@ import org.junit.Test;
 
 //整型无序数组a，第i下标的值为a[i]，找任意一对下标（i，j)使得i<j 且a[i] < a[j]
 public class FindPair {
+
     //!!!!!!!!!!!! 位移运算符比+号的优先级低
     @Test
     public void testOperatorPriority() {
@@ -80,5 +81,17 @@ public class FindPair {
                 }
             }
         }
+    }
+
+    /**
+     * 使用动态规划的方式。记录前面的出现的最小值，如果当前元素大于之前的最小值即可返回
+     *
+     * @param a
+     * @param p
+     * @param q
+     * @return
+     */
+    public int[] findPair2(int[] a, int p, int q) {
+        return null;
     }
 }

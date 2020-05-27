@@ -20,7 +20,7 @@ public class MergeSort {
 
 
     private static void mergeSortAndy(int[] a, int p, int r) {
-        if (a == null || a.length == 1 || p >= r) return;
+        if (p >= r) return;
         int q = p + ((r - p) >> 1);
         mergeSortAndy(a, p, q);
         mergeSortAndy(a, q + 1, r);
@@ -28,7 +28,7 @@ public class MergeSort {
     }
 
     private static void mergeAndy(int[] a, int p, int q, int r) {
-        int[] tmp = new int[a.length];
+        int tmp[] = new int[r - p + 1];
         int i = p, j = q + 1, k = 0;
         while (i <= q && j <= r) {
             if (a[i] < a[j]) {
@@ -40,7 +40,9 @@ public class MergeSort {
 
         if (i <= q) tmp[k++] = a[i++];
         if (j <= r) tmp[k++] = a[j++];
-        System.arraycopy(tmp, 0, a, p, r - p + 1);
+        for (int l = 0; l < tmp.length; l++) {
+            a[p + l] = tmp[l];
+        }
     }
 
 

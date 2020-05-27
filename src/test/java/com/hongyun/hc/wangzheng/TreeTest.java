@@ -102,6 +102,7 @@ public class TreeTest {
 
         Tree.Node node = Tree.getTree();
         levelPrint(node);
+
         Tree.invertNode(node);
         levelPrint(node);
     }
