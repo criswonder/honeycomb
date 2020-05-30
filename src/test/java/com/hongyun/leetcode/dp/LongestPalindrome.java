@@ -2,6 +2,7 @@ package com.hongyun.leetcode.dp;
 
 import org.junit.Test;
 
+//https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/
 public class LongestPalindrome {
     public String longestPalindrome(String s) {
         int len = s.length();
@@ -60,7 +61,7 @@ public class LongestPalindrome {
         String res = longestPalindrome("abc");
         System.out.println(res);
 
-        String result = longestPalindrome("ffabbaxx");
+        String result = longestPalindrome("bdfafdc");
         System.out.println(result);
     }
 }
