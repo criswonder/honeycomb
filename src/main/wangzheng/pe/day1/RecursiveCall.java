@@ -57,6 +57,14 @@ public class RecursiveCall {
         return 1;
     }
 
+    public static int steps(int sum) {
+        if (sum < 0) return 0;
+        if (sum == 1) return 1;
+        if (sum == 2) return 3;
+        if (sum == 5) return 1 + 5 + 3;
+        return 1 + steps(sum - 1) + steps(sum - 2) + steps(sum - 5);
+    }
+
     //斐波那契数列（Fibonacci sequence）
     static int fibonacci(int n) {
         if (n == 1 || n == 2) {
