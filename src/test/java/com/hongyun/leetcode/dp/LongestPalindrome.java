@@ -26,8 +26,7 @@ public class LongestPalindrome {
 
         char[] chars = s.toCharArray();
         // 3. 状态转移
-        // 注意：先填左下角
-        // 填表规则：先一列一列的填写，再一行一行的填，保证左下方的单元格先进行计算
+        // 填表规则：先一列一列的填写，再一行一行的填
         for (int j = 1; j < len; j++) {
             for (int i = 0; i < j; i++) {
                 // 头尾字符不相等，不是回文串
