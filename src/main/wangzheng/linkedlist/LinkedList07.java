@@ -368,16 +368,11 @@ public class LinkedList07 {
 
     /**
      * //推演一下边界情况：
-     * list只有3个元素，删除K=4
-     * <p>
-     * fast = 第二个元素
-     * i = 2
-     * <p>
-     * fast = 第三个元素
-     * i=3
-     * <p>
-     * fast = 第四个元素 (空)
-     * i=4
+     1,2,3,4,5,6,7 k=3
+         f
+
+     1,2,3,4,5,6,7 k=3
+             s
      */
     public static Node deleteLastKth(Node list, int k) {
         Node fast = list;
